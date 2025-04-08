@@ -34,6 +34,7 @@
  */
 package com.TicTacToe;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -592,6 +593,29 @@ public class MainForm extends JDialog {
         ButtonSwitch.setBounds(12, 270, 123, 35);
         ButtonReset.setBounds(141, 270, 123, 35);
         Panel.setPreferredSize(new Dimension(276, 317));
+        Button1.setBackground(new Color(0xF0F8FF));
+        Button2.setBackground(new Color(0xF0F8FF));
+        Button3.setBackground(new Color(0xF0F8FF));
+        Button4.setBackground(new Color(0xF0F8FF));
+        Button5.setBackground(new Color(0xF0F8FF));
+        Button6.setBackground(new Color(0xF0F8FF));
+        Button7.setBackground(new Color(0xF0F8FF));
+        Button8.setBackground(new Color(0xF0F8FF));
+        Button9.setBackground(new Color(0xF0F8FF));
+        ButtonSwitch.setBackground(new Color(0xF0F8FF));
+        ButtonReset.setBackground(new Color(0xF0F8FF));
+        Panel.setBackground(new Color(0xB0C4DE));
+        Button1.setBorder(new LineBorder(new Color(0x00BFFF)));
+        Button2.setBorder(new LineBorder(new Color(0x00BFFF)));
+        Button3.setBorder(new LineBorder(new Color(0x00BFFF)));
+        Button4.setBorder(new LineBorder(new Color(0x00BFFF)));
+        Button5.setBorder(new LineBorder(new Color(0x00BFFF)));
+        Button6.setBorder(new LineBorder(new Color(0x00BFFF)));
+        Button7.setBorder(new LineBorder(new Color(0x00BFFF)));
+        Button8.setBorder(new LineBorder(new Color(0x00BFFF)));
+        Button9.setBorder(new LineBorder(new Color(0x00BFFF)));
+        ButtonSwitch.setBorder(new LineBorder(new Color(0x00BFFF)));
+        ButtonReset.setBorder(new LineBorder(new Color(0x00BFFF)));
         Button1.setFont(Button1.getFont().deriveFont(20f));
         Button2.setFont(Button1.getFont().deriveFont(20f));
         Button3.setFont(Button1.getFont().deriveFont(20f));
@@ -621,6 +645,7 @@ public class MainForm extends JDialog {
         setResizable(false);
         setTitle("TicTacToe");
         setLocationRelativeTo(null);
+        setIconImage(new ImageIcon(getClass().getResource( "/TicTacToe.png" )).getImage());
         addWindowListener(new FormListener());
         Button1.addActionListener(new ChessListener());
         Button2.addActionListener(new ChessListener());
@@ -646,7 +671,7 @@ public class MainForm extends JDialog {
         ButtonReset.addKeyListener(new ChessListener());
     }
     public MainForm() {
-        super();
+        super((JDialog)null);
         initializeComponent();
         LstMo = Mode.StartupMode;
         Bo = new Board(Mode.Attacker);
