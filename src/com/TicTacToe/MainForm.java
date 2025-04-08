@@ -544,6 +544,11 @@ public class MainForm extends JDialog {
         Bo.setResult(value);
         setTitle(getShownText());
     }
+    private static final Color GhostWhite = new Color(0xF8F8FF);
+    private static final Color AliceBlue = new Color(0xF0F8FF);
+    private static final Color DodgerBlue = new Color(0x1E90FF);
+    private static final Color LightSeaGreen = new Color(0x20B2AA);
+    private static final Color LightSteelBlue = new Color(0xB0C4DE);
     private JButton Button1;
     private JButton Button2;
     private JButton Button3;
@@ -593,29 +598,33 @@ public class MainForm extends JDialog {
         ButtonSwitch.setBounds(12, 270, 123, 35);
         ButtonReset.setBounds(141, 270, 123, 35);
         Panel.setPreferredSize(new Dimension(276, 317));
-        Button1.setBackground(new Color(0xF0F8FF));
-        Button2.setBackground(new Color(0xF0F8FF));
-        Button3.setBackground(new Color(0xF0F8FF));
-        Button4.setBackground(new Color(0xF0F8FF));
-        Button5.setBackground(new Color(0xF0F8FF));
-        Button6.setBackground(new Color(0xF0F8FF));
-        Button7.setBackground(new Color(0xF0F8FF));
-        Button8.setBackground(new Color(0xF0F8FF));
-        Button9.setBackground(new Color(0xF0F8FF));
-        ButtonSwitch.setBackground(new Color(0xF0F8FF));
-        ButtonReset.setBackground(new Color(0xF0F8FF));
-        Panel.setBackground(new Color(0xB0C4DE));
-        Button1.setBorder(new LineBorder(new Color(0x00BFFF)));
-        Button2.setBorder(new LineBorder(new Color(0x00BFFF)));
-        Button3.setBorder(new LineBorder(new Color(0x00BFFF)));
-        Button4.setBorder(new LineBorder(new Color(0x00BFFF)));
-        Button5.setBorder(new LineBorder(new Color(0x00BFFF)));
-        Button6.setBorder(new LineBorder(new Color(0x00BFFF)));
-        Button7.setBorder(new LineBorder(new Color(0x00BFFF)));
-        Button8.setBorder(new LineBorder(new Color(0x00BFFF)));
-        Button9.setBorder(new LineBorder(new Color(0x00BFFF)));
-        ButtonSwitch.setBorder(new LineBorder(new Color(0x00BFFF)));
-        ButtonReset.setBorder(new LineBorder(new Color(0x00BFFF)));
+
+
+
+
+        Button1.setBackground(AliceBlue);
+        Button2.setBackground(AliceBlue);
+        Button3.setBackground(AliceBlue);
+        Button4.setBackground(AliceBlue);
+        Button5.setBackground(AliceBlue);
+        Button6.setBackground(AliceBlue);
+        Button7.setBackground(AliceBlue);
+        Button8.setBackground(AliceBlue);
+        Button9.setBackground(AliceBlue);
+        ButtonSwitch.setBackground(AliceBlue);
+        ButtonReset.setBackground(AliceBlue);
+        Panel.setBackground(LightSteelBlue);
+        Button1.setBorder(new LineBorder(DodgerBlue));
+        Button2.setBorder(new LineBorder(DodgerBlue));
+        Button3.setBorder(new LineBorder(DodgerBlue));
+        Button4.setBorder(new LineBorder(DodgerBlue));
+        Button5.setBorder(new LineBorder(DodgerBlue));
+        Button6.setBorder(new LineBorder(DodgerBlue));
+        Button7.setBorder(new LineBorder(DodgerBlue));
+        Button8.setBorder(new LineBorder(DodgerBlue));
+        Button9.setBorder(new LineBorder(DodgerBlue));
+        ButtonSwitch.setBorder(new LineBorder(DodgerBlue));
+        ButtonReset.setBorder(new LineBorder(DodgerBlue));
         Button1.setFont(Button1.getFont().deriveFont(20f));
         Button2.setFont(Button1.getFont().deriveFont(20f));
         Button3.setFont(Button1.getFont().deriveFont(20f));
@@ -658,6 +667,32 @@ public class MainForm extends JDialog {
         Button9.addActionListener(new ChessListener());
         ButtonSwitch.addActionListener(new SwitchListener());
         ButtonReset.addActionListener(new ResetListener());
+
+
+        Button1.addFocusListener(new ChessListener());
+        Button2.addFocusListener(new ChessListener());
+        Button3.addFocusListener(new ChessListener());
+        Button4.addFocusListener(new ChessListener());
+        Button5.addFocusListener(new ChessListener());
+        Button6.addFocusListener(new ChessListener());
+        Button7.addFocusListener(new ChessListener());
+        Button8.addFocusListener(new ChessListener());
+        Button9.addFocusListener(new ChessListener());
+        ButtonSwitch.addFocusListener(new ChessListener());
+        ButtonReset.addFocusListener(new ChessListener());
+
+        Button1.addMouseListener(new ChessListener());
+        Button2.addMouseListener(new ChessListener());
+        Button3.addMouseListener(new ChessListener());
+        Button4.addMouseListener(new ChessListener());
+        Button5.addMouseListener(new ChessListener());
+        Button6.addMouseListener(new ChessListener());
+        Button7.addMouseListener(new ChessListener());
+        Button8.addMouseListener(new ChessListener());
+        Button9.addMouseListener(new ChessListener());
+        ButtonSwitch.addMouseListener(new ChessListener());
+        ButtonReset.addMouseListener(new ChessListener());
+
         Button1.addKeyListener(new ChessListener());
         Button2.addKeyListener(new ChessListener());
         Button3.addKeyListener(new ChessListener());
@@ -860,7 +895,7 @@ public class MainForm extends JDialog {
         public void windowDeactivated(WindowEvent e) {
         }
     }
-    private class ChessListener implements ActionListener, KeyListener {
+    private class ChessListener implements ActionListener, KeyListener, FocusListener, MouseListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             actionChessClick(e.getSource(), e);
@@ -874,6 +909,31 @@ public class MainForm extends JDialog {
         }
         @Override
         public void keyTyped(KeyEvent e) {
+        }
+        @Override
+        public void focusGained(FocusEvent e) {
+            ((JComponent)e.getSource()).setBorder(new LineBorder(LightSeaGreen));
+        }
+        @Override
+        public void focusLost(FocusEvent e) {
+            ((JComponent)e.getSource()).setBorder(new LineBorder(DodgerBlue));
+        }
+        @Override
+        public void mouseClicked(MouseEvent e) {
+        }
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            ((JComponent)e.getSource()).setBackground(GhostWhite);
+        }
+        @Override
+        public void mouseExited(MouseEvent e) {
+            ((JComponent)e.getSource()).setBackground(AliceBlue);
         }
     }
     private class SwitchListener implements ActionListener {
