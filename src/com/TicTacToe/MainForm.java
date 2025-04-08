@@ -549,6 +549,8 @@ public class MainForm extends JDialog {
     private static final Color DodgerBlue = new Color(0x1E90FF);
     private static final Color LightSeaGreen = new Color(0x20B2AA);
     private static final Color LightSteelBlue = new Color(0xB0C4DE);
+    private static final Color Green = new Color(0x008000);
+    private static final Color Red = new Color(0xFF0000);
     private JButton Button1;
     private JButton Button2;
     private JButton Button3;
@@ -598,10 +600,6 @@ public class MainForm extends JDialog {
         ButtonSwitch.setBounds(12, 270, 123, 35);
         ButtonReset.setBounds(141, 270, 123, 35);
         Panel.setPreferredSize(new Dimension(276, 317));
-
-
-
-
         Button1.setBackground(AliceBlue);
         Button2.setBackground(AliceBlue);
         Button3.setBackground(AliceBlue);
@@ -667,8 +665,6 @@ public class MainForm extends JDialog {
         Button9.addActionListener(new ChessListener());
         ButtonSwitch.addActionListener(new SwitchListener());
         ButtonReset.addActionListener(new ResetListener());
-
-
         Button1.addFocusListener(new ChessListener());
         Button2.addFocusListener(new ChessListener());
         Button3.addFocusListener(new ChessListener());
@@ -680,7 +676,6 @@ public class MainForm extends JDialog {
         Button9.addFocusListener(new ChessListener());
         ButtonSwitch.addFocusListener(new ChessListener());
         ButtonReset.addFocusListener(new ChessListener());
-
         Button1.addMouseListener(new ChessListener());
         Button2.addMouseListener(new ChessListener());
         Button3.addMouseListener(new ChessListener());
@@ -692,7 +687,6 @@ public class MainForm extends JDialog {
         Button9.addMouseListener(new ChessListener());
         ButtonSwitch.addMouseListener(new ChessListener());
         ButtonReset.addMouseListener(new ChessListener());
-
         Button1.addKeyListener(new ChessListener());
         Button2.addKeyListener(new ChessListener());
         Button3.addKeyListener(new ChessListener());
@@ -817,7 +811,7 @@ public class MainForm extends JDialog {
             if (getTu() == Turn.User) {
                 Bo.set(i, Chess.O);
                 ((AbstractButton)target).setText(" O ");
-                target.setForeground(new Color(0x008000));
+                target.setForeground(Green);
                 setTu(Turn.Response);
                 checkResult();
                 if (!Bo.inDebugMode() && getRe() == Result.None)
@@ -828,7 +822,7 @@ public class MainForm extends JDialog {
             } else if (getTu() == Turn.Response) {
                 Bo.set(i, Chess.X);
                 ((AbstractButton)target).setText(" X ");
-                target.setForeground(new Color(0xFF0000));
+                target.setForeground(Red);
                 setTu(Turn.User);
                 checkResult();
             }
