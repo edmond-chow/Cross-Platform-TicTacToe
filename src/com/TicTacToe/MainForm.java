@@ -447,7 +447,11 @@ public class MainForm extends JDialog {
         private final int Data;
         private final Board[] Parses;
         public Board[] getBoards() {
-            return Parses.clone();
+            Board[] Rst = Parses.clone();
+            for (int i = 0; i < Rst.length; ++i) {
+                Rst[i] = Rst[i].clone();
+            }
+            return Rst;
         }
         public int getSource() {
             return Data;
