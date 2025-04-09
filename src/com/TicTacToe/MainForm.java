@@ -324,14 +324,14 @@ public class MainForm extends JDialog {
             Data = 0;
             setCase(match);
         }
-        public ArrayList<Integer> getChessPos(Chess chess) {
+        public ArrayList<Integer> locateChesses(Chess chess) {
             ArrayList<Integer> Rst = new ArrayList<Integer>(9);
             for (int i = 1; i <= 9; ++i) {
                 if (get(i) == chess) { Rst.add(i); }
             }
             return Rst;
         }
-        public Board[] getParse(int state)
+        public Board[] parses(int state)
         {
             boolean C1 = (state & P1) == P1;
             boolean C2 = (state & P2) == P2;
@@ -348,8 +348,7 @@ public class MainForm extends JDialog {
             if (C8) { Sz *= 2; }
             Board[] Rst = new Board[Sz];
             for (int i = 0; i < Rst.length; ++i) {
-                Rst[i] = new Board(0);
-                Rst[i].Data = Data;
+                Rst[i] = clone();
             }
             int Dx = 1;
             if (C1) {
@@ -455,10 +454,10 @@ public class MainForm extends JDialog {
         }
         public Pack(int Source) {
             Data = Source;
-            Parses = new Board(Source).getParse(Source >>> 24);
+            Parses = new Board(Source).parses(Source >>> 24);
         }
     }
-    private static final Pack Mask = new Pack(0b1111_00111111_00111111_00111111);
+    private static final Pack MaskA = new Pack(0b1111_00111111_00111111_00111111);
     private static final Pack WonC = new Pack(0b0011_00001000_00001000_00001000);
     private static final Pack LostC = new Pack(0b0011_00000100_00000100_00000100);
     private static final Pack MaskC = new Pack(0b0011_00001100_00001100_00001100);
@@ -716,14 +715,14 @@ public class MainForm extends JDialog {
     private boolean processResponse(Board[] match, Board[] mask) {
         for (int i = 0; i < match.length; ++i) {
             if ((Bo.getCase() & mask[i].getCase()) == match[i].getSanitizer().getCase()) {
-                chooseChess(match[i].getChessPos(Chess.Preferred));
+                chooseChess(match[i].locateChesses(Chess.Preferred));
                 return true;
             }
         }
         return false;
     }
     private void checkResponse() {
-        Board[] PMask = Mask.getBoards();
+        Board[] PMask = MaskA.getBoards();
         for (Pack match : Cases) {
             if (processResponse(match.getBoards(), PMask)) { return; }
         }
@@ -747,7 +746,7 @@ public class MainForm extends JDialog {
         if (processResponse(PWonCM, PMaskCM)) { return; }
         if (processResponse(PWonSN, PMaskSN)) { return; }
         if (processResponse(PWonSM, PMaskSM)) { return; }
-        chooseChess(Bo.getChessPos(Chess.None));
+        chooseChess(Bo.locateChesses(Chess.None));
     }
     private boolean processResult(Board[] match, Board[] mask, Result result) {
         for (int i = 0; i < match.length; ++i) {
